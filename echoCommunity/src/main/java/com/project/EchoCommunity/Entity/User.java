@@ -26,4 +26,15 @@ public class User {
     private String job;
     private int age;
     private LocalDate birthday;
+    private int point;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "dept", referencedColumnName = "dept", nullable = false)
+    //외래 키가 참조하는 대상 엔티티(여기서는 Dept)의 컬럼 이름을 지정, NULL 값을 허용하지 않음을 명시
+    private Dept dept;
+
+    @Lob
+    @Column(name = "img")
+    private byte[] img;
+
 }
