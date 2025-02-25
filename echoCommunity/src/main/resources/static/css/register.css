@@ -153,7 +153,9 @@ body {
 
 .input-group input[type="text"],
 .input-group input[type="password"],
-.input-group input[type="date"] {
+.input-group input[type="date"],
+.input-group input[type="number"],
+.input-group select {
     padding: 0.8rem 1rem;
     border: none;
     border-radius: 6px;
