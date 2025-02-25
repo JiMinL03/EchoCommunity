@@ -6,10 +6,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
-public class User {
+@Entity
+public class Users {
     @Id
     @Column(unique = true)  // 로그인 시 사용할 고유 ID, 즉 id를 유니크로 설정
     private String id;
@@ -36,5 +36,4 @@ public class User {
     @Lob
     @Column(name = "img")
     private byte[] img;
-
 }
