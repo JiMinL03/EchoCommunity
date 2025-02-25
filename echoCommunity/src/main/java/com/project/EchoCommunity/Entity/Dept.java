@@ -2,10 +2,8 @@ package com.project.EchoCommunity.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -21,12 +19,5 @@ public class Dept {
         //INSERT INTO dept (dept, field) VALUES ('공학', '전자공학');
         this.dept = dept;
         this.field = field;
-    }
-
-    @PrePersist
-    public void prePersist() {
-        if (this.field == null) {
-            this.field = "미정"; // 기본값 설정
-        }
     }
 }

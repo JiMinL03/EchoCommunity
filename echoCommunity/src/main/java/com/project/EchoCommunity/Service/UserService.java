@@ -2,9 +2,9 @@ package com.project.EchoCommunity.Service;
 
 import com.project.EchoCommunity.Entity.Dept;
 import com.project.EchoCommunity.Entity.Users;
+import com.project.EchoCommunity.Repository.DeptRepository;
 import com.project.EchoCommunity.Repository.UserRepository;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +14,10 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final DeptRepository deptRepository;
 
     public Users create(String id, String password, String username, String nickname, String job,
-                        int age, LocalDate birthday, int point, Dept dept, byte[] img){
+                        int age, LocalDate birthday, int point, String deptName, byte[] img){
         //User 회원 생성
         //스프링 시큐리티 기능 추가 필요함
         Users user = new Users();
@@ -28,8 +29,12 @@ public class UserService {
         user.setAge(age);
         user.setBirthday(birthday);
         user.setPoint(point);
-        user.setDept(dept);
         user.setImg(img);
+
+        Dept dept = deptRepository.findById(deptName)
+                .orElseThrow(() -> new IllegalArgumentException("해당 전공을 찾을 수 없습니다: " + deptName));
+        user.setDept(dept);
+
         this.userRepository.save(user);
         return user;
     }

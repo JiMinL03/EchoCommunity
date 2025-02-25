@@ -29,16 +29,16 @@ public class SignupController { //회원가입 컨트롤러
         /*if (bindingResult.hasErrors()){
             return "register";
         }*/
-        System.out.println("선택된 전공: " + form.getDept());
+        System.out.println("전체 폼 데이터: " + form.getAge());  // 전체 폼 데이터 출력
 
         if (userService.existsById(form.getId())) { //이미 사용중인 아이디라면
             bindingResult.rejectValue("id", "duplicate", "이미 사용 중인 아이디입니다.");
-            return "register";
+            return "redirect:/register";
         }
 
         if(!form.getPassword().equals(form.getPassword2())){
             bindingResult.rejectValue("password2", "passwordInCorrect", "2개의 비밀번호가 일치하지 않습니다.");
-            return "register";
+            return "redirect:/register";
         }
 
         userService.create(form.getId(), form.getPassword(), form.getUsername(),form.getNickname(),

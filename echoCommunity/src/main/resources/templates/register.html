@@ -53,20 +53,17 @@
                     </div>
                     <div class="input-group">
                         <label>나이</label>
-                        <input type="number" th:field="*{age}">
+                        <input type="number" value="20" th:field="*{age}">
                     </div>
                     <div class="input-group">
                         <label>전공</label>
-                        <div class="input-group">
-                            <select name="dept" th:field="*{dept}">
-                                <option value="">전공 선택</option>
-                                <option th:each="department : ${departments}"
-                                        th:value="${department.dept}"
-                                        th:text="${department.dept}"
-                                        th:selected="${department.dept == registerForm.dept}">
-                                </option>
-                            </select>
-                        </div>
+                        <select name="dept" th:field="*{dept}">
+                            <option value="">전공 선택</option>
+                            <option th:each="department : ${departments}"
+                                    th:value="${department.dept}"
+                                    th:text="${department.dept}">
+                            </option>
+                        </select>
                     </div>
                     <div class="input-group expert-auth" style="display: none;">  <!-- 전문가 선택시 보이도록 -->
                         <label>인증문서</label>

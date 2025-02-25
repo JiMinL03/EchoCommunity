@@ -39,7 +39,7 @@ public class RegisterForm {
     private LocalDate birthday;
 
     @NotNull(message = "전공은 필수 항목입니다.")  // ✅ @NotNull 사용
-    private Dept dept;
+    private String dept;
 
     private int point;
 
