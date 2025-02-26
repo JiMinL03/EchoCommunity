@@ -42,4 +42,14 @@ public class UserService {
     public boolean existsById(String id) {
         return userRepository.existsById(id);
     }
+
+    public boolean findByPassword(String password, String id) {
+        Users user = userRepository.findById(id)
+                .orElse(null);
+
+        if (user == null) {
+            return false;
+        }
+        return user.getPassword().equals(password);
+    }
 }
