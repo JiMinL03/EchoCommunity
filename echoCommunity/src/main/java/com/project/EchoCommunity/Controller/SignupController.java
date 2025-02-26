@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import com.project.EchoCommunity.Form.RegisterForm;
 import com.project.EchoCommunity.Service.UserService;
 import jakarta.validation.Valid;
+import com.project.EchoCommunity.Entity.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,14 +27,13 @@ public class SignupController { //회원가입 컨트롤러
 
     @PostMapping("register")
     public String register(@Valid RegisterForm form, BindingResult bindingResult) {
-        /*if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()){
             return "register";
-        }*/
-        System.out.println("전체 폼 데이터: " + form.getAge());  // 전체 폼 데이터 출력
+        }
 
         if (userService.existsById(form.getId())) { //이미 사용중인 아이디라면
             bindingResult.rejectValue("id", "duplicate", "이미 사용 중인 아이디입니다.");
-            return "redirect:/register";
+            return "redirect:/register"; //다시 register 페이지 새로고침
         }
 
         if(!form.getPassword().equals(form.getPassword2())){
@@ -41,8 +41,10 @@ public class SignupController { //회원가입 컨트롤러
             return "redirect:/register";
         }
 
-        userService.create(form.getId(), form.getPassword(), form.getUsername(),form.getNickname(),
+        Users newUser = userService.create(form.getId(), form.getPassword(), form.getUsername(),form.getNickname(),
                 form.getJob(),form.getAge(), form.getBirthday(), 0, form.getDept(), null);
+
+        System.out.println("새로운 회원 생성됨: " + newUser.getNickname());
         return "redirect:/home";
     }
 }

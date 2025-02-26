@@ -40,6 +40,6 @@ public class UserService {
     }
 
     public boolean existsById(String id) {
-        return true;
+        return userRepository.existsById(id);
     }
 }
