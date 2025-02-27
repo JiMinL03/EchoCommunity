@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/css/counsel.css">
     <link rel="stylesheet" href="/css/nav.css">
 </head>
+
 <body>
     <div th:replace="~{nav}"></div>
     <main>
@@ -21,6 +23,7 @@
             <div class="search-box">
                 <input type="text" placeholder="검색">
                 <button type="submit" class="search-btn">검색</button>
+                <button th:if="${session.userId != null}" class="write-btn" onclick="location.href='/form'">등록하기</button>
             </div>
         </div>
 
@@ -33,7 +36,9 @@
                     <span class="date">작성일</span>
                 </div>
             </div>
-        </div>  
+        </div>
+
     </main>
 </body>
+
 </html>

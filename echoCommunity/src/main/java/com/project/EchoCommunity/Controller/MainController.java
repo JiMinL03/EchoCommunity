@@ -46,4 +46,8 @@ public class MainController { //메인화면 페이지 이동
     public String counselingPage() {
         return "counsel";
     }
+    @GetMapping("form")
+    public String formPage() {
+        return "form";
+    }
 }
