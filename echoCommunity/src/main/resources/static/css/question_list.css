@@ -127,7 +127,7 @@ body {
     color: white;
 }
 
-/*counsel.html style*/
+/*question_list.html style*/
 main {
     margin: 0 250px;
     /* 메인 컨텐츠 좌우 여백 추가 */
@@ -204,33 +204,47 @@ main {
     background-color: #e0e0e0;
 }
 
-.board-list {
-    margin-top: 20px;
-}
-
-.board-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 10px;
-    border-bottom: 1px solid #ddd;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
     background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.board-title {
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
+thead {
+    background-color: #8DA7BE;  /* 사이트 테마 컬러 사용 */
+    color: white;
 }
 
-.board-info {
-    display: flex;
-    gap: 20px;
-    color: #666;
-    font-size: 14px;
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
 }
 
-.nickname,
-.date {
-    color: #666;
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
 }
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+/* 반응형 테이블을 위한 스타일 */
+@media screen and (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+}
+
+/* 선택적: 각 열의 너비 조정 */
+th:nth-child(1) { width: 60%; }  /* 제목 열 */
+th:nth-child(2) { width: 20%; }  /* 작성일자 열 */
+th:nth-child(3) { width: 20%; }  /* 작성자 열 */
