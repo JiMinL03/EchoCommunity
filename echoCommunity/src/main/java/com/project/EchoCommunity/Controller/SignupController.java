@@ -18,6 +18,11 @@ public class SignupController { //회원가입 컨트롤러
     private final UserService userService;
     private final DeptService deptService;
 
+    @GetMapping("signup")
+    public String signupPage() {
+        return "term";
+    }
+
     @GetMapping("register")
     public String registerForm(Model model) {
         model.addAttribute("registerForm", new RegisterForm());

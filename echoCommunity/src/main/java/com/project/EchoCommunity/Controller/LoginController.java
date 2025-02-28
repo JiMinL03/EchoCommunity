@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
     private final UserService userService;
+    @GetMapping("login")
+    public String loginPage() {
+        return "login";
+    }
     @PostMapping("login")
     public String login(@RequestParam("id") String id,
                         @RequestParam("password") String password, HttpSession session) {

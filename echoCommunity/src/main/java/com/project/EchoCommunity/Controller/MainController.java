@@ -21,33 +21,4 @@ public class MainController { //메인화면 페이지 이동
         System.out.println("현재 로그인한 사용자 ID: " + userId);
         return "home";
     }
-
-    @GetMapping("login")
-    public String loginPage() {
-        return "login";
-    }
-    @GetMapping("signup")
-    public String signupPage() {
-        return "term";
-    }
-    @GetMapping("qa") //qa.html 제작필요
-    public String qaPage() {
-        return "qa";
-    }
-    @GetMapping("contest") //contest.html 제작필요
-    public String contestPage() {
-        return "contest";
-    }
-    @GetMapping("certificate") //certificate.html 제작필요
-    public String certificatePage() {
-        return "certificate";
-    }
-    @GetMapping("counseling")
-    public String counselingPage() {
-        return "counsel";
-    }
-    @GetMapping("form")
-    public String formPage() {
-        return "form";
-    }
 }
