@@ -15,7 +15,7 @@
                 <div class="post-header">
                     <h2 class="post-title" th:text="${question.subject}"></h2>
                     <div class="post-info">
-                        <span class="author">작성자</span>
+                        <span class="author" th:text="${question.authorId}"></span>
                         <span class="date" th:text="${question.createDate}"></span>
                     </div>
                 </div>
@@ -31,23 +31,22 @@
                     <button class="dropdown-item delete">삭제하기</button>
                 </div>
                 <!--게시글 작성자 수정 및 삭제 기능 끝-->
-
             </div>
     
             <div class="comments-section">
-                <div class="comment-count">n개의 답변이 있습니다.</div>
+                <div class="comment-count" th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></div>
                 
-                <div class="comment">
+                <div class="comment" th:each="question, index : ${question.answerList}">
                     <div class="comment-header">
-                        <span class="comment-author">닉네임</span>
+                        <span class="comment-author" th:text="${question.authorId}"></span>
                         <span class="comment-tag">#칭호</span>
-                        <span class="comment-date">작성일자</span>
+                        <span th:text="${question.createDate}" class="comment-date">작성일자</span>
                     </div>
-                    <p class="comment-text">작성된 답변 내용</p>
+                    <p th:text="${question.content}" class="comment-text">작성된 답변 내용</p>
 
                     <!--답변 작성자 수정 및 삭제 기능 -->
                     <button class="more-btn" onclick="toggleDropdown(this)">⋮</button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu">x`
                         <button class="dropdown-item">수정하기</button>
                         <button class="dropdown-item delete">삭제하기</button>
                     </div>
@@ -55,11 +54,11 @@
 
                 </div>
 
-                <div class="comment-input">
-                    <div class="input-form">
-                        <input type="text" placeholder="답변을 입력하세요">
+                <div class="comment-input" th:if="${session.userId != null}">
+                    <form class="input-form" method="post" th:action="@{|/answer/create/${question.id}|}">
+                        <input type="text" name="content" placeholder="답변을 입력하세요">
                         <button class="submit-btn">작성</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

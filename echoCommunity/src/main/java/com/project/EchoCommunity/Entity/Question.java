@@ -32,4 +32,6 @@ public class Question {
     //질문 게시글 하나에 답변 갯수 여러 개
     //만약 질문 게시글이 삭제되면 답변리스트도 같이 삭제됨
     private List<Answer> answerList;
+
+    private String authorId;
 }
