@@ -8,7 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +53,15 @@ public class UserService {
             return false;
         }
         return user.getPassword().equals(password);
+    }
+
+    public Users getUser(String id){
+        System.out.println("user id: "+ id);
+        Optional<Users> user = this.userRepository.findById(id);
+        if(user.isPresent()){
+            return user.get();
+        }else{
+            throw new NullPointerException("User not found");
+        }
     }
 }

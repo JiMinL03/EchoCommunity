@@ -1,6 +1,7 @@
 package com.project.EchoCommunity.Service;
 
 import com.project.EchoCommunity.Entity.Question;
+import com.project.EchoCommunity.Entity.Users;
 import com.project.EchoCommunity.Repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,13 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
-    public void create(String subject, String content){
+    public void create(String subject, String content, String authorId){
         Question question;
         question = new Question();
         question.setSubject(subject);
         question.setContent(content);
         question.setCreateDate(LocalDate.now());
+        question.setAuthorId(authorId);
         this.questionRepository.save(question);
     }
 
