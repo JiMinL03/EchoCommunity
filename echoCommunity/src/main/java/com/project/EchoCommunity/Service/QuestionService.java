@@ -38,4 +38,13 @@ public class QuestionService {
             throw new NullPointerException("question not found");
         }
     }
+
+    public void modifyQuestion(Question question ,String subject, String content){
+        question.setSubject(subject);
+        question.setContent(content);
+        this.questionRepository.save(question);
+    }
+    public void deleteQuestion(Question question){
+        questionRepository.delete(question);
+    }
 }

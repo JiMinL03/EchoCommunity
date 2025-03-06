@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -52,5 +51,26 @@ public class QuestionController {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question",question);
         return "question_detail";
+    }
+
+    @GetMapping("/question/modify/{id}")
+    public String modifyGET(@PathVariable int id, Model model) {
+        Question question = this.questionService.getQuestion(id);
+        model.addAttribute("question",question);
+        return "question_modify";
+    }
+
+    @PostMapping("/question/modify/{id}")
+    public String modifyPost(@PathVariable int id, @Valid QuestionForm questionForm, BindingResult bindingResult) {
+        Question question = this.questionService.getQuestion(id);
+        this.questionService.modifyQuestion(question, questionForm.getSubject(), questionForm.getContent());
+        return "redirect:/question/detail/" + id;
+    }
+
+    @GetMapping("/question/delete/{id}")
+    public String delete(@PathVariable int id) {
+        Question question = this.questionService.getQuestion(id);
+        this.questionService.deleteQuestion(question);
+        return "redirect:/question/list";
     }
 }
