@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 @Getter
@@ -28,5 +29,22 @@ public class AnswerService {
         answer.setQuestion(question);
         answer.setAuthorId(authorId);
         this.answerRepository.save(answer);
+    }
+
+    public Answer getAnswer(Integer id){
+        Optional<Answer> answer = answerRepository.findById(id);
+        if(answer.isPresent()){
+            return answer.get();
+        }else {
+            throw new NullPointerException("answer not found");
+        }
+    }
+
+    public void modifyAnswer(Answer answer , String content){
+        answer.setContent(content);
+        this.answerRepository.save(answer);
+    }
+    public void deleteQuestion(Answer answer){
+        answerRepository.delete(answer);
     }
 }
